@@ -1,9 +1,10 @@
 using System;
 
-class Program
+namespace ScriptureMemoryApp
 {
-    static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Hello Develop03 World!");
-    }
-}
+        static void Main(string[] args)
+        {
+            string reference = "John 6:26";
+            string text = "Jesus answered them and said, Verily
