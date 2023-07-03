@@ -6,21 +6,20 @@ namespace ScriptureMemoryApp
     class Scripture
     {
         private string reference;
-        private string text;
+        private List<Verse> verses;
         private List<Word> words;
 
-        public Scripture(string reference, string text)
+        public Scripture(string reference)
         {
             this.reference = reference;
-            this.text = text;
+            verses = new List<Verse>();
             words = new List<Word>();
-            InitializeWords();
         }
 
-        private void InitializeWords()
+        public void AddVerse(Verse verse)
         {
-            string[] splitText = text.Split(' ');
-            foreach (string word in splitText)
+            verses.Add(verse);
+            foreach (string word in verse.Text.Split(' '))
             {
                 words.Add(new Word(word));
             }
@@ -28,7 +27,12 @@ namespace ScriptureMemoryApp
 
         public void Display()
         {
-            Console.WriteLine($"Reference: {reference}\nText: {GetVisibleText()}\n");
+            Console.WriteLine($"Reference: {reference}");
+            foreach (Verse verse in verses)
+            {
+                Console.WriteLine($"{verse.Reference} : {verse.Text}");
+            }
+            Console.WriteLine();
         }
 
         public bool HideRandomWord()
@@ -73,16 +77,6 @@ namespace ScriptureMemoryApp
             Random random = new Random();
             int index = random.Next(visibleWords.Count);
             return visibleWords[index];
-        }
-
-        private string GetVisibleText()
-        {
-            string visibleText = "";
-            foreach (Word word in words)
-            {
-                visibleText += word.GetText() + " ";
-            }
-            return visibleText.Trim();
         }
     }
 }
