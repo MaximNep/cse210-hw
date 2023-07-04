@@ -75,4 +75,7 @@ namespace MindfulnessApp
             Console.WriteLine();
             Console.WriteLine("Number of items listed: {0}", items.Count);
 
-            ShowFinishingMessage
+            ShowFinishingMessage(duration);
+        }
+    }
+}
